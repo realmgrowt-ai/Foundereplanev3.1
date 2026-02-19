@@ -307,10 +307,12 @@ class FounderPlaneAPITester:
         self.test_lead_stats()
         self.test_lead_status_update()
         
-        # Analytics Tests
-        print("\n📊 ANALYTICS TESTS")
+        # Analytics Tests (NEW SCROLL FEATURES)
+        print("\n📊 SCROLL ANALYTICS TESTS (NEW)")
         self.test_scroll_analytics()
+        self.test_scroll_analytics_batch()
         self.test_scroll_analytics_stats()
+        self.test_scroll_analytics_stats_different_days()
         
         # AI Integration Tests
         print("\n🤖 AI INTEGRATION TESTS")
