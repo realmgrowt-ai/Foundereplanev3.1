@@ -142,15 +142,57 @@ class FounderPlaneAPITester:
     def test_scroll_analytics(self):
         """Test scroll analytics tracking"""
         scroll_data = {
-            "page": "/services/boltrunway",
+            "page": "BoltRunway",
             "section": "hero",
-            "section_index": 1,
+            "section_index": 0,
             "total_sections": 8,
             "session_id": f"test_session_{uuid.uuid4().hex[:8]}",
             "viewport_height": 1080
         }
         
         return self.run_test("Scroll Analytics", "POST", "/api/analytics/scroll-events", 201, scroll_data)
+
+    def test_scroll_analytics_batch(self):
+        """Test batch scroll analytics tracking (NEW in this iteration)"""
+        session_id = f"test_batch_session_{uuid.uuid4().hex[:8]}"
+        batch_data = [
+            {
+                "page": "BoltRunway",
+                "section": "hero",
+                "section_index": 0,
+                "total_sections": 9,
+                "session_id": session_id,
+                "viewport_height": 1080
+            },
+            {
+                "page": "BoltRunway", 
+                "section": "diagnosis",
+                "section_index": 1,
+                "total_sections": 9,
+                "session_id": session_id,
+                "viewport_height": 1080
+            },
+            {
+                "page": "Index",
+                "section": "hero",
+                "section_index": 0,
+                "total_sections": 7,
+                "session_id": session_id,
+                "viewport_height": 1080
+            }
+        ]
+        
+        success, response = self.run_test("Scroll Analytics Batch", "POST", "/api/analytics/scroll-events/batch", 201, batch_data)
+        
+        if success and response:
+            expected_count = len(batch_data)
+            actual_count = response.get('count', 0)
+            if actual_count != expected_count:
+                print(f"   ⚠️  Warning: Expected {expected_count} events, got {actual_count}")
+            else:
+                print(f"   ✅ Batch processed {actual_count} scroll events")
+        
+        return success, response
 
     def test_scroll_analytics_stats(self):
         """Test scroll analytics stats (admin only)"""
