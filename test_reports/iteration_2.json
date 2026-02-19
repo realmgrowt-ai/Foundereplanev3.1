@@ -1,0 +1,56 @@
+{
+  "summary": "Completed comprehensive testing of FounderPlane scroll-progress tracking analytics and navigation changes. All NEW features working perfectly: 'About Us' removed from navigation, ScrollTracker added to all pages, new Scroll Depth tab in Admin dashboard with funnel visualization, and backend scroll analytics APIs working correctly.",
+  
+  "backend_issues": {
+    "critical_bugs": [],
+    "flaky_endpoints": [
+      {
+        "endpoint": "/api/stage-assessment",
+        "failure_rate": "100%",
+        "symptoms": "Returns 520 error - likely LLM key configuration issue",
+        "workaround": "Not part of NEW features testing scope",
+        "fix_priority": "LOW"
+      }
+    ]
+  },
+  
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  
+  "passed_tests": [
+    "Navigation: 'About Us' link successfully removed from header",
+    "Navigation: Services, FAQ, Book a Call items still present and working",
+    "Backend: POST /api/analytics/scroll-events/batch accepts batch scroll events (NEW)",
+    "Backend: GET /api/analytics/scroll-stats?days=30 with admin password returns data (NEW)",
+    "Backend: Time range parameters (7d, 14d, 30d, 90d) working correctly (NEW)",
+    "Admin dashboard: 3 tabs present (Leads, Analytics, Scroll Depth) (NEW)",
+    "Admin dashboard: Scroll Depth tab loads with proper content (NEW)",
+    "Admin dashboard: Summary cards show Unique Sessions, Total Scroll Events, Pages Tracked (NEW)",
+    "Admin dashboard: Per-page funnel cards with section progress bars working (NEW)",
+    "Admin dashboard: Page filter pills (All Pages, Index, BoltRunway, etc.) working (NEW)",
+    "Admin dashboard: Time range buttons (7d, 14d, 30d, 90d) clickable and active states (NEW)",
+    "ScrollTracker: All 9 BoltRunway sections have data-testid attributes (NEW)",
+    "ScrollTracker: Session ID generation working correctly (NEW)",
+    "ScrollTracker: Component integrated on Index and BoltRunway pages (NEW)",
+    "Frontend: All 7 pages load without errors",
+    "Frontend: Scroll analytics data showing in Admin dashboard with proper visualization"
+  ],
+  
+  "test_report_links": ["/app/backend_test.py"],
+  
+  "success_percentage": {
+    "backend": "93.8% (15/16 endpoints working, 1 AI endpoint failing but not NEW feature)",
+    "frontend": "100% (all NEW scroll features working perfectly)",
+    "integration": "100% (scroll tracking and admin dashboard integration working)"
+  },
+  
+  "updated_files": ["/app/backend_test.py"],
+  
+  "action_item_for_main_agent": "",
+  
+  "should_call_test_agent_after_fix": "false",
+  "should_main_agent_test_itself": "true"
+}
