@@ -110,9 +110,6 @@ const statusIcons: Record<string, React.ElementType> = {
   'Lost': XCircle,
 };
 
-  'Lost': XCircle,
-};
-
 // Page color mapping for scroll analytics
 const PAGE_COLORS: Record<string, { bg: string; text: string; bar: string }> = {
   'Index': { bg: 'bg-blue-500/20', text: 'text-blue-400', bar: 'bg-blue-500' },
