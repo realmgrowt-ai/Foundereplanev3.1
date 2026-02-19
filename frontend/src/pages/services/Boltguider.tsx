@@ -358,7 +358,8 @@ const Boltguider = () => {
             Theme: "The Laboratory of Clarity" + Blueprint Grid
         ═══════════════════════════════════════════════════════════════════ */}
         <section 
-          id="hero" 
+          id="hero"
+          data-testid="boltguider-hero"
           className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
           style={{ 
             backgroundColor: colors.galleryWhite,
@@ -502,6 +503,7 @@ const Boltguider = () => {
         ═══════════════════════════════════════════════════════════════════ */}
         <section 
           ref={villainRef}
+          data-testid="boltguider-villain"
           className="relative min-h-[200vh]"
           style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}
         >
@@ -590,6 +592,7 @@ const Boltguider = () => {
             Cinematic Dark Section
         ═══════════════════════════════════════════════════════════════════ */}
         <section 
+          data-testid="boltguider-truth"
           className="relative py-24 md:py-32"
           style={{ backgroundColor: colors.jetBlack }}
         >
@@ -639,6 +642,7 @@ const Boltguider = () => {
         ═══════════════════════════════════════════════════════════════════ */}
         <section 
           ref={machineRef}
+          data-testid="boltguider-machine"
           className="relative"
           style={{ backgroundColor: colors.galleryWhite, padding: "160px 0" }}
         >
@@ -713,7 +717,7 @@ const Boltguider = () => {
             SECTION 4: THE KIT
             Bento Grid Layout + Magnetic Spotlight Cards
         ═══════════════════════════════════════════════════════════════════ */}
-        <section style={{ backgroundColor: "#F5F7FA", padding: "120px 0" }}>
+        <section data-testid="boltguider-kit" style={{ backgroundColor: "#F5F7FA", padding: "120px 0" }}>
           <div className="container mx-auto px-4">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -789,7 +793,7 @@ const Boltguider = () => {
             SECTION 5: THE FILTER
             Two-Column Comparison + Pulsing Micro-Bullets
         ═══════════════════════════════════════════════════════════════════ */}
-        <section style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
+        <section data-testid="boltguider-filter" style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <motion.p 
@@ -894,7 +898,7 @@ const Boltguider = () => {
             SECTION 6: THE CHOICE
             Pricing Cards + Magnetic Spotlight
         ═══════════════════════════════════════════════════════════════════ */}
-        <section style={{ backgroundColor: colors.galleryWhite, padding: "140px 0" }}>
+        <section data-testid="boltguider-choice" style={{ backgroundColor: colors.galleryWhite, padding: "140px 0" }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <motion.p 
@@ -1019,6 +1023,7 @@ const Boltguider = () => {
             Stage Clarity Check Trigger - Architectural Clarity
         ═══════════════════════════════════════════════════════════════════ */}
         <section 
+          data-testid="boltguider-diagnostic"
           className="relative"
           style={{ backgroundColor: "#F5F7FA", padding: "100px 0" }}
         >
@@ -1154,7 +1159,7 @@ const Boltguider = () => {
             SECTION 8: THE FAQ
             Minimalist Accordion
         ═══════════════════════════════════════════════════════════════════ */}
-        <section style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
+        <section data-testid="boltguider-faq" style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <p className="uppercase tracking-widest mb-4" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "14px", color: colors.lightGrey }}>
@@ -1223,7 +1228,7 @@ const Boltguider = () => {
             SECTION 9: THE STAMP
             Quality Pledge + Footer
         ═══════════════════════════════════════════════════════════════════ */}
-        <section style={{ backgroundColor: colors.galleryWhite, padding: "120px 0 80px" }}>
+        <section data-testid="boltguider-gateway" style={{ backgroundColor: colors.galleryWhite, padding: "120px 0 80px" }}>
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center">
               {/* Shield Icon */}
