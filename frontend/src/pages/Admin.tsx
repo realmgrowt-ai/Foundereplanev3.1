@@ -80,6 +80,20 @@ interface Stats {
 
 const LEAD_STATUSES = ['New', 'Contacted', 'Qualified', 'Converted', 'Lost'];
 
+interface ScrollStats {
+  total_sessions: number;
+  total_events: number;
+  days: number;
+  page_visitors: Array<{ page: string; total_visitors: number }>;
+  section_stats: Array<{
+    page: string;
+    section: string;
+    section_index: number;
+    total_sections: number;
+    reach_count: number;
+  }>;
+}
+
 const statusColors: Record<string, string> = {
   'New': 'bg-blue-500/20 text-blue-400',
   'Contacted': 'bg-yellow-500/20 text-yellow-400',
