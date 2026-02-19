@@ -195,9 +195,36 @@ class FounderPlaneAPITester:
         return success, response
 
     def test_scroll_analytics_stats(self):
-        """Test scroll analytics stats (admin only)"""
+        """Test scroll analytics stats with days parameter (admin only)"""
         headers = {"X-Admin-Password": self.admin_password}
-        return self.run_test("Scroll Analytics Stats", "GET", "/api/analytics/scroll-stats", 200, headers=headers)
+        
+        # Test with default days parameter
+        success, response = self.run_test("Scroll Analytics Stats (30d)", "GET", "/api/analytics/scroll-stats?days=30", 200, headers=headers)
+        
+        if success and response:
+            # Verify stats structure
+            expected_fields = ['total_sessions', 'total_events', 'days', 'page_visitors', 'section_stats']
+            missing_fields = [field for field in expected_fields if field not in response]
+            
+            if missing_fields:
+                print(f"   ⚠️  Warning: Missing scroll stats fields: {missing_fields}")
+            else:
+                print(f"   ✅ Scroll Stats: {response.get('total_sessions', 0)} sessions, {response.get('total_events', 0)} events")
+                print(f"   ✅ Pages with data: {len(response.get('page_visitors', []))}")
+        
+        return success, response
+
+    def test_scroll_analytics_stats_different_days(self):
+        """Test scroll analytics stats with different day ranges"""
+        headers = {"X-Admin-Password": self.admin_password}
+        
+        # Test different day ranges that should be available in admin UI
+        for days in [7, 14, 90]:
+            success, response = self.run_test(f"Scroll Stats ({days}d)", "GET", f"/api/analytics/scroll-stats?days={days}", 200, headers=headers)
+            if success and response:
+                print(f"   ✅ {days}d range: {response.get('total_sessions', 0)} sessions")
+        
+        return True, {}
 
     def test_stage_assessment_ai(self):
         """Test AI-powered stage assessment"""
