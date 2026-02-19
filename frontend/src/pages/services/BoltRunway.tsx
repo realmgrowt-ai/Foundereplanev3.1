@@ -3,6 +3,19 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Plus, Minus, Check, Shield, Hourglass, TrendingDown, Shuffle, Compass } from 'lucide-react';
 import founderplaneLogo from '@/assets/founderplane-logo-new.png';
+import ScrollTracker from '@/components/ScrollTracker';
+
+const BOLTRUNWAY_SECTIONS = [
+  { id: 'boltrunway-hero', name: 'Hero' },
+  { id: 'boltrunway-diagnosis', name: 'Diagnosis' },
+  { id: 'boltrunway-truth', name: 'Truth' },
+  { id: 'boltrunway-ownership', name: 'Ownership' },
+  { id: 'boltrunway-architecture', name: 'Architecture' },
+  { id: 'boltrunway-requirements', name: 'Requirements' },
+  { id: 'boltrunway-diagnostic', name: 'Diagnostic' },
+  { id: 'boltrunway-gateway', name: 'Gateway' },
+  { id: 'boltrunway-faq', name: 'FAQ' },
+];
 import StageClarityCheck from '@/components/StageClarityCheck';
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -401,6 +414,7 @@ const BoltRunway = () => {
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: F.inter }} data-testid="boltrunway-page">
+      <ScrollTracker page="BoltRunway" sections={BOLTRUNWAY_SECTIONS} />
       {/* Stage Clarity Check Modal */}
       <StageClarityCheck isOpen={showStageClarityCheck} onClose={() => setShowStageClarityCheck(false)} />
 

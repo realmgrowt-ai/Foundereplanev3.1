@@ -3,6 +3,19 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Plus, Minus, Zap, Check } from 'lucide-react';
 import founderplaneLogo from '@/assets/founderplane-logo-new.png';
+import ScrollTracker from '@/components/ScrollTracker';
+
+const B2BBOLT_SECTIONS = [
+  { id: 'b2bbolt-hero', name: 'Hero' },
+  { id: 'b2bbolt-diagnosis', name: 'Diagnosis' },
+  { id: 'b2bbolt-truth', name: 'Truth' },
+  { id: 'b2bbolt-ownership', name: 'Ownership' },
+  { id: 'b2bbolt-architecture', name: 'Architecture' },
+  { id: 'b2bbolt-requirements', name: 'Requirements' },
+  { id: 'b2bbolt-diagnostic', name: 'Diagnostic' },
+  { id: 'b2bbolt-gateway', name: 'Gateway' },
+  { id: 'b2bbolt-faq', name: 'FAQ' },
+];
 import StageClarityCheck from '@/components/StageClarityCheck';
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -386,6 +399,7 @@ const B2BBolt = () => {
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: F.inter }}>
+      <ScrollTracker page="B2BBolt" sections={B2BBOLT_SECTIONS} />
       {/* Stage Clarity Check Modal */}
       <StageClarityCheck isOpen={showStageClarityCheck} onClose={() => setShowStageClarityCheck(false)} />
 

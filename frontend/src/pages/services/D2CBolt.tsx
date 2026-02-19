@@ -3,6 +3,19 @@ import { Link } from "react-router-dom";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, Plus, Minus, Zap } from "lucide-react";
 import founderplaneLogo from "@/assets/founderplane-logo-new.png";
+import ScrollTracker from "@/components/ScrollTracker";
+
+const D2CBOLT_SECTIONS = [
+  { id: 'hero-section', name: 'Hero' },
+  { id: 'diagnosis-section', name: 'Diagnosis' },
+  { id: 'truth-section', name: 'Truth' },
+  { id: 'ownership-section', name: 'Ownership' },
+  { id: 'architecture-section', name: 'Architecture' },
+  { id: 'requirements-section', name: 'Requirements' },
+  { id: 'diagnostic-section', name: 'Diagnostic' },
+  { id: 'gateway-section', name: 'Gateway' },
+  { id: 'faq-section', name: 'FAQ' },
+];
 import StageClarityCheck from "@/components/StageClarityCheck";
 import LeadCaptureModal from "@/components/LeadCaptureModal";
 
@@ -208,6 +221,7 @@ const D2CBolt = () => {
 
   return (
     <main className="min-h-screen overflow-x-hidden">
+      <ScrollTracker page="D2CBolt" sections={D2CBOLT_SECTIONS} />
       
       {/* Stage Clarity Check Modal */}
       <StageClarityCheck 

@@ -3,6 +3,19 @@ import { Link } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Plus, Minus, Check, Settings } from 'lucide-react';
 import founderplaneLogo from '@/assets/founderplane-logo-new.png';
+import ScrollTracker from '@/components/ScrollTracker';
+
+const SCALERUNWAY_SECTIONS = [
+  { id: 'scalerunway-hero', name: 'Hero' },
+  { id: 'scalerunway-diagnosis', name: 'Diagnosis' },
+  { id: 'scalerunway-truth', name: 'Truth' },
+  { id: 'scalerunway-ownership', name: 'Ownership' },
+  { id: 'scalerunway-architecture', name: 'Architecture' },
+  { id: 'scalerunway-requirements', name: 'Requirements' },
+  { id: 'scalerunway-diagnostic', name: 'Diagnostic' },
+  { id: 'scalerunway-gateway', name: 'Gateway' },
+  { id: 'scalerunway-faq', name: 'FAQ' },
+];
 import StageClarityCheck from '@/components/StageClarityCheck';
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -304,6 +317,7 @@ const ScaleRunway = () => {
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: F.inter }} data-testid="scalerunway-page">
+      <ScrollTracker page="ScaleRunway" sections={SCALERUNWAY_SECTIONS} />
       {/* Stage Clarity Check Modal */}
       <StageClarityCheck isOpen={showStageClarityCheck} onClose={() => setShowStageClarityCheck(false)} />
       {/* ScaleRunway Branded Lead Form */}
