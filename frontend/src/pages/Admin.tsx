@@ -24,7 +24,11 @@ import {
   XCircle,
   UserCheck,
   Target,
-  Sparkles
+  Sparkles,
+  Eye,
+  MousePointer,
+  TrendingDown,
+  ArrowDown
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
