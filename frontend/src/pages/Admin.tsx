@@ -358,6 +358,18 @@ const Admin = () => {
                 <BarChart3 className="w-4 h-4 inline mr-2" />
                 Analytics
               </button>
+              <button
+                onClick={() => setActiveTab('scroll')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  activeTab === 'scroll' 
+                    ? 'bg-primary text-white' 
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                data-testid="tab-scroll-depth"
+              >
+                <MousePointer className="w-4 h-4 inline mr-2" />
+                Scroll Depth
+              </button>
             </div>
             <Button 
               variant="ghost" 
