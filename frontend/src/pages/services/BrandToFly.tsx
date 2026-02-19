@@ -756,7 +756,7 @@ const BrandToFly = () => {
           SECTION 5: THE ARCHITECTURE
           + Spotlight Step Cards
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
+      <section data-testid="brandtofly-architecture" style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <motion.p
@@ -1114,7 +1114,7 @@ const BrandToFly = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           SECTION 9: THE FAQS
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
+      <section data-testid="brandtofly-faq" style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <motion.p
