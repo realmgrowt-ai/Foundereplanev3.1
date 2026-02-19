@@ -345,7 +345,8 @@ const BrandToFly = () => {
           + Blueprint Grid Background with Slow Upward Pan Animation
       ═══════════════════════════════════════════════════════════════════ */}
       <section 
-        id="hero" 
+        id="hero"
+        data-testid="brandtofly-hero"
         className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
         style={{ 
           backgroundColor: colors.galleryWhite,
@@ -481,6 +482,7 @@ const BrandToFly = () => {
       <section 
         ref={villainRef}
         id="problem"
+        data-testid="brandtofly-villain"
         className="relative min-h-[200vh]"
         style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}
       >
@@ -569,6 +571,7 @@ const BrandToFly = () => {
           Cinematic Dark Section
       ═══════════════════════════════════════════════════════════════════ */}
       <section 
+        data-testid="brandtofly-truth"
         className="relative min-h-screen flex items-center justify-center"
         style={{ backgroundColor: colors.cinematicBlack }}
       >
@@ -613,7 +616,7 @@ const BrandToFly = () => {
           SECTION 3: THE FILTER
           + Animated Micro-Bullets
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
+      <section data-testid="brandtofly-filter" style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto">
             <motion.p
@@ -672,7 +675,7 @@ const BrandToFly = () => {
           SECTION 4: THE OWNERSHIP
           + Animated Micro-Bullets
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.galleryWhite, padding: "120px 0", borderTop: `1px solid ${colors.cardBorder}` }}>
+      <section data-testid="brandtofly-ownership" style={{ backgroundColor: colors.galleryWhite, padding: "120px 0", borderTop: `1px solid ${colors.cardBorder}` }}>
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto">
             <motion.p
@@ -836,7 +839,7 @@ const BrandToFly = () => {
           SECTION 6: THE AFTER-STATE
           + Animated Micro-Bullets
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
+      <section data-testid="brandtofly-afterstate" style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto">
             <motion.p
@@ -917,7 +920,7 @@ const BrandToFly = () => {
           SECTION 7: THE SELF-QUALIFICATION
           + Animated Micro-Bullets
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
+      <section data-testid="brandtofly-qualification" style={{ backgroundColor: colors.mistGrey, padding: "120px 0" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <motion.p
@@ -1022,7 +1025,7 @@ const BrandToFly = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           SECTION 8: NEXT STEPS
       ═══════════════════════════════════════════════════════════════════ */}
-      <section style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
+      <section data-testid="brandtofly-gateway" style={{ backgroundColor: colors.galleryWhite, padding: "120px 0" }}>
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <motion.p
