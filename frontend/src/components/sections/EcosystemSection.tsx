@@ -427,7 +427,7 @@ const EcosystemSection = () => {
   );
 
   return (
-    <section id="ecosystem" className="py-24 md:py-32 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
+    <section id="ecosystem" data-testid="index-ecosystem" className="py-24 md:py-32 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden">
       {/* Enhanced Grid Pattern with Animation */}
       <motion.div 
         className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.02)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.02)_1px,transparent_1px)] bg-[size:60px_60px]"

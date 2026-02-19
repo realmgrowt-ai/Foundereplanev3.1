@@ -100,7 +100,7 @@ const colorClasses = {
 
 const StageDiagnosisSection = () => {
   return (
-    <section id="stage-diagnosis" className="py-24 md:py-32 bg-white relative overflow-hidden">
+    <section id="stage-diagnosis" data-testid="index-stage-diagnosis" className="py-24 md:py-32 bg-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary)/0.02)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary)/0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
       <div className="absolute top-20 left-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />

@@ -24,7 +24,7 @@ const steps = [
 
 const FounderSection = () => {
   return (
-    <section id="founder" className="py-24 bg-white relative overflow-hidden">
+    <section id="founder" data-testid="index-founder" className="py-24 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(221_73%_49%/0.02)_1px,transparent_1px),linear-gradient(to_bottom,hsl(221_73%_49%/0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
       

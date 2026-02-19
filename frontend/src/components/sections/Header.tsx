@@ -17,7 +17,6 @@ const navLinks = [
       { label: "BoltRunway", href: "/services/boltrunway", category: "Scale" },
     ]
   },
-  { label: "About Us", href: "#features" },
   { label: "FAQ", href: "#faq" },
 ];
 

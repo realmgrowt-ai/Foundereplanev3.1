@@ -14,7 +14,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onOpenDiagnostic }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-background overflow-hidden">
+    <section data-testid="index-hero" className="relative min-h-screen flex flex-col items-center justify-center bg-background overflow-hidden">
       {/* Animated floating orbs - enhanced */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div 

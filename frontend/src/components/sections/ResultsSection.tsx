@@ -26,7 +26,7 @@ const proofBlocks = [
 
 const ResultsSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+    <section data-testid="index-results" className="py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(var(--primary)/0.03)_0%,transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(221_73%_49%/0.03)_0%,transparent_50%)]" />
