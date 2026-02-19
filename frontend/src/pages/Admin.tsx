@@ -189,6 +189,14 @@ const Admin = () => {
 
       if (leadsRes.ok) setLeads(await leadsRes.json());
       if (statsRes.ok) setStats(await statsRes.json());
+
+      // Fetch scroll analytics
+      try {
+        const scrollRes = await fetch(`${API_URL}/api/analytics/scroll-stats?days=${scrollDays}`, {
+          headers: { 'X-Admin-Password': password }
+        });
+        if (scrollRes.ok) setScrollStats(await scrollRes.json());
+      } catch { /* scroll stats optional */ }
     } catch (err) {
       console.error('Fetch error:', err);
     } finally {
