@@ -6,6 +6,20 @@ import { Button } from "@/components/ui/button";
 import StageClarityCheck from "@/components/StageClarityCheck";
 import BrandedLeadForm from "@/components/BrandedLeadForm";
 import founderplaneLogo from "@/assets/founderplane-logo-new.png";
+import ScrollTracker from "@/components/ScrollTracker";
+
+const BOLTGUIDER_SECTIONS = [
+  { id: 'boltguider-hero', name: 'Hero' },
+  { id: 'boltguider-villain', name: 'Villain' },
+  { id: 'boltguider-truth', name: 'Truth' },
+  { id: 'boltguider-machine', name: 'Machine' },
+  { id: 'boltguider-kit', name: 'Kit' },
+  { id: 'boltguider-filter', name: 'Filter' },
+  { id: 'boltguider-choice', name: 'Choice' },
+  { id: 'boltguider-diagnostic', name: 'Diagnostic' },
+  { id: 'boltguider-faq', name: 'FAQ' },
+  { id: 'boltguider-gateway', name: 'Gateway' },
+];
 
 // Design Tokens
 const colors = {
@@ -292,6 +306,7 @@ const Boltguider = () => {
   return (
     <>
       <main className="min-h-screen bg-white overflow-x-hidden">
+        <ScrollTracker page="Boltguider" sections={BOLTGUIDER_SECTIONS} />
         {/* ═══════════════════════════════════════════════════════════════════
             HEADER - Minimal, Fixed
         ═══════════════════════════════════════════════════════════════════ */}

@@ -5,7 +5,20 @@ import { Palette, MessageCircle, ArrowRight, Plus, RefreshCw, Megaphone, Anchor 
 import { Button } from "@/components/ui/button";
 import founderplaneLogo from "@/assets/founderplane-logo-new.png";
 import BrandedLeadForm from "@/components/BrandedLeadForm";
+import ScrollTracker from "@/components/ScrollTracker";
 
+const BRANDTOFLY_SECTIONS = [
+  { id: 'brandtofly-hero', name: 'Hero' },
+  { id: 'brandtofly-villain', name: 'Villain' },
+  { id: 'brandtofly-truth', name: 'Truth' },
+  { id: 'brandtofly-filter', name: 'Filter' },
+  { id: 'brandtofly-ownership', name: 'Ownership' },
+  { id: 'brandtofly-architecture', name: 'Architecture' },
+  { id: 'brandtofly-afterstate', name: 'After-State' },
+  { id: 'brandtofly-qualification', name: 'Qualification' },
+  { id: 'brandtofly-gateway', name: 'Gateway' },
+  { id: 'brandtofly-faq', name: 'FAQ' },
+];
 // Design Tokens - BrandToFly Identity
 const colors = {
   electricPurple: "#7000FF",
@@ -266,6 +279,7 @@ const BrandToFly = () => {
 
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
+      <ScrollTracker page="BrandToFly" sections={BRANDTOFLY_SECTIONS} />
       {/* Branded Lead Form - Electric Purple */}
       <BrandedLeadForm 
         isOpen={showLeadModal}
