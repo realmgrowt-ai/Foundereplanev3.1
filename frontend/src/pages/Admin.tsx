@@ -385,7 +385,10 @@ const Admin = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-8">
-        {activeTab === 'analytics' ? (
+        {activeTab === 'scroll' ? (
+          // Scroll Depth Tab
+          <ScrollDepthTab scrollStats={scrollStats} scrollDays={scrollDays} setScrollDays={setScrollDays} onRefresh={fetchData} isLoading={isLoading} />
+        ) : activeTab === 'analytics' ? (
           // Analytics Tab
           <div className="space-y-8">
             {/* Summary Stats */}
