@@ -110,6 +110,302 @@ const statusIcons: Record<string, React.ElementType> = {
   'Lost': XCircle,
 };
 
+  'Lost': XCircle,
+};
+
+// Page color mapping for scroll analytics
+const PAGE_COLORS: Record<string, { bg: string; text: string; bar: string }> = {
+  'Index': { bg: 'bg-blue-500/20', text: 'text-blue-400', bar: 'bg-blue-500' },
+  'BoltRunway': { bg: 'bg-rose-500/20', text: 'text-rose-400', bar: 'bg-rose-500' },
+  'ScaleRunway': { bg: 'bg-amber-500/20', text: 'text-amber-400', bar: 'bg-amber-500' },
+  'B2BBolt': { bg: 'bg-emerald-500/20', text: 'text-emerald-400', bar: 'bg-emerald-500' },
+  'D2CBolt': { bg: 'bg-violet-500/20', text: 'text-violet-400', bar: 'bg-violet-500' },
+  'Boltguider': { bg: 'bg-cyan-500/20', text: 'text-cyan-400', bar: 'bg-cyan-500' },
+  'BrandToFly': { bg: 'bg-fuchsia-500/20', text: 'text-fuchsia-400', bar: 'bg-fuchsia-500' },
+};
+
+const ScrollDepthTab = ({ scrollStats, scrollDays, setScrollDays, onRefresh, isLoading }: {
+  scrollStats: ScrollStats | null;
+  scrollDays: number;
+  setScrollDays: (d: number) => void;
+  onRefresh: () => void;
+  isLoading: boolean;
+}) => {
+  const [selectedPage, setSelectedPage] = useState<string | null>(null);
+
+  if (!scrollStats) {
+    return (
+      <div className="text-center py-20">
+        <MousePointer className="w-12 h-12 text-slate-600 mx-auto mb-4" />
+        <p className="text-slate-400 text-lg">No scroll data yet</p>
+        <p className="text-slate-500 text-sm mt-2">Scroll analytics will appear once visitors browse your pages</p>
+      </div>
+    );
+  }
+
+  // Group section stats by page
+  const pageGroups: Record<string, Array<{
+    section: string;
+    section_index: number;
+    total_sections: number;
+    reach_count: number;
+  }>> = {};
+
+  scrollStats.section_stats.forEach((stat) => {
+    if (!pageGroups[stat.page]) pageGroups[stat.page] = [];
+    pageGroups[stat.page].push(stat);
+  });
+
+  // Sort sections by index within each page
+  Object.values(pageGroups).forEach((sections) => {
+    sections.sort((a, b) => a.section_index - b.section_index);
+  });
+
+  // Get page visitors map
+  const visitorMap: Record<string, number> = {};
+  scrollStats.page_visitors.forEach((p) => { visitorMap[p.page] = p.total_visitors; });
+
+  const pages = Object.keys(pageGroups).sort();
+  const displayPages = selectedPage ? [selectedPage] : pages;
+
+  return (
+    <div className="space-y-6" data-testid="scroll-depth-tab">
+      {/* Controls */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <MousePointer className="w-5 h-5 text-primary" />
+            Scroll Depth Analytics
+          </h2>
+          <p className="text-slate-400 text-sm mt-1">
+            Track where visitors drop off on each page
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="flex bg-slate-800 rounded-lg p-1">
+            {[7, 14, 30, 90].map((d) => (
+              <button
+                key={d}
+                onClick={() => { setScrollDays(d); setTimeout(onRefresh, 100); }}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                  scrollDays === d ? 'bg-primary text-white' : 'text-slate-400 hover:text-white'
+                }`}
+                data-testid={`scroll-days-${d}`}
+              >
+                {d}d
+              </button>
+            ))}
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onRefresh}
+            disabled={isLoading}
+            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+            data-testid="scroll-refresh-btn"
+          >
+            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+          </Button>
+        </div>
+      </div>
+
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-slate-900 border border-slate-800 rounded-xl p-5"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <Eye className="w-5 h-5 text-blue-400" />
+            <span className="text-slate-400 text-sm">Unique Sessions</span>
+          </div>
+          <p className="text-3xl font-bold text-white">{scrollStats.total_sessions}</p>
+          <p className="text-slate-500 text-xs mt-1">Last {scrollStats.days} days</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="bg-slate-900 border border-slate-800 rounded-xl p-5"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <Activity className="w-5 h-5 text-green-400" />
+            <span className="text-slate-400 text-sm">Total Scroll Events</span>
+          </div>
+          <p className="text-3xl font-bold text-white">{scrollStats.total_events}</p>
+          <p className="text-slate-500 text-xs mt-1">Section impressions tracked</p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-slate-900 border border-slate-800 rounded-xl p-5"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <BarChart3 className="w-5 h-5 text-purple-400" />
+            <span className="text-slate-400 text-sm">Pages Tracked</span>
+          </div>
+          <p className="text-3xl font-bold text-white">{pages.length}</p>
+          <p className="text-slate-500 text-xs mt-1">With scroll data</p>
+        </motion.div>
+      </div>
+
+      {/* Page Filter Pills */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => setSelectedPage(null)}
+          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            !selectedPage ? 'bg-primary text-white' : 'bg-slate-800 text-slate-400 hover:text-white'
+          }`}
+          data-testid="scroll-filter-all"
+        >
+          All Pages
+        </button>
+        {pages.map((page) => {
+          const colors = PAGE_COLORS[page] || { bg: 'bg-slate-500/20', text: 'text-slate-400', bar: 'bg-slate-500' };
+          return (
+            <button
+              key={page}
+              onClick={() => setSelectedPage(selectedPage === page ? null : page)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedPage === page ? `${colors.bg} ${colors.text}` : 'bg-slate-800 text-slate-400 hover:text-white'
+              }`}
+              data-testid={`scroll-filter-${page.toLowerCase()}`}
+            >
+              {page}
+              <span className="ml-2 opacity-60">{visitorMap[page] || 0}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Per-Page Funnel Cards */}
+      {displayPages.map((page, pageIdx) => {
+        const sections = pageGroups[page] || [];
+        const pageVisitors = visitorMap[page] || 0;
+        const colors = PAGE_COLORS[page] || { bg: 'bg-slate-500/20', text: 'text-slate-400', bar: 'bg-slate-500' };
+
+        return (
+          <motion.div
+            key={page}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: pageIdx * 0.05 }}
+            className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden"
+            data-testid={`scroll-page-${page.toLowerCase()}`}
+          >
+            {/* Page Header */}
+            <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className={`w-3 h-3 rounded-full ${colors.bar}`} />
+                <h3 className="text-lg font-bold text-white">{page}</h3>
+                <span className={`px-2 py-0.5 rounded text-xs ${colors.bg} ${colors.text}`}>
+                  {pageVisitors} visitors
+                </span>
+              </div>
+              {sections.length > 0 && (
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-slate-500">Completion:</span>
+                  <span className={`font-bold ${colors.text}`}>
+                    {pageVisitors > 0
+                      ? Math.round(((sections[sections.length - 1]?.reach_count || 0) / pageVisitors) * 100)
+                      : 0}%
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Section Funnel */}
+            <div className="p-6">
+              {sections.length === 0 ? (
+                <p className="text-slate-500 text-center py-4">No section data yet</p>
+              ) : (
+                <div className="space-y-3">
+                  {sections.map((section, idx) => {
+                    const pct = pageVisitors > 0 ? (section.reach_count / pageVisitors) * 100 : 0;
+                    const prevPct = idx > 0 && pageVisitors > 0
+                      ? (sections[idx - 1].reach_count / pageVisitors) * 100
+                      : 100;
+                    const dropoff = idx > 0 ? prevPct - pct : 0;
+
+                    return (
+                      <div key={section.section} data-testid={`scroll-section-${page.toLowerCase()}-${idx}`}>
+                        <div className="flex items-center gap-4">
+                          {/* Section number */}
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${colors.bg} ${colors.text} shrink-0`}>
+                            {idx + 1}
+                          </div>
+
+                          {/* Section name + stats */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between mb-1.5">
+                              <span className="text-sm font-medium text-slate-200 truncate">
+                                {section.section}
+                              </span>
+                              <div className="flex items-center gap-3 shrink-0">
+                                <span className="text-sm font-bold text-white">
+                                  {section.reach_count}
+                                </span>
+                                <span className={`text-xs font-medium ${pct >= 70 ? 'text-green-400' : pct >= 40 ? 'text-yellow-400' : 'text-red-400'}`}>
+                                  {Math.round(pct)}%
+                                </span>
+                                {dropoff > 5 && (
+                                  <span className="text-xs text-red-400/80 flex items-center gap-0.5">
+                                    <ArrowDown className="w-3 h-3" />
+                                    {Math.round(dropoff)}%
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
+                            {/* Progress bar */}
+                            <div className="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                              <motion.div
+                                className={`h-full rounded-full ${colors.bar}`}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${Math.max(pct, 2)}%` }}
+                                transition={{ duration: 0.8, delay: idx * 0.1 }}
+                                style={{ opacity: Math.max(pct / 100, 0.3) }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Drop-off indicator between sections */}
+                        {idx < sections.length - 1 && dropoff > 10 && (
+                          <div className="ml-12 mt-1 mb-1 flex items-center gap-2">
+                            <div className="w-px h-3 bg-red-500/30" />
+                            <span className="text-[10px] text-red-400/60 font-medium uppercase tracking-wider">
+                              {Math.round(dropoff)}% drop-off
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </motion.div>
+        );
+      })}
+
+      {pages.length === 0 && (
+        <div className="text-center py-16">
+          <MousePointer className="w-16 h-16 text-slate-700 mx-auto mb-4" />
+          <p className="text-slate-400 text-lg">No scroll data collected yet</p>
+          <p className="text-slate-500 text-sm mt-2">
+            Visit your service pages to start generating scroll analytics
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
