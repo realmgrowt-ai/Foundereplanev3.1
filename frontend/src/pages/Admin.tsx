@@ -122,7 +122,9 @@ const Admin = () => {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedLead, setExpandedLead] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'leads' | 'analytics'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'analytics' | 'scroll'>('leads');
+  const [scrollStats, setScrollStats] = useState<ScrollStats | null>(null);
+  const [scrollDays, setScrollDays] = useState(30);
 
   // Check session
   useEffect(() => {
