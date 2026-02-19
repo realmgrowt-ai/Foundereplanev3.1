@@ -28,6 +28,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <ScrollTracker page="Index" sections={INDEX_SECTIONS} />
       <ScrollProgress />
       <Header />
       <HeroSection onOpenDiagnostic={() => setIsDiagnosticOpen(true)} />
