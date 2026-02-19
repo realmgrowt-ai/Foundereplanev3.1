@@ -11,6 +11,17 @@ import FounderSection from "@/components/sections/FounderSection";
 import Footer from "@/components/sections/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import StageClarityCheck from "@/components/StageClarityCheck";
+import ScrollTracker from "@/components/ScrollTracker";
+
+const INDEX_SECTIONS = [
+  { id: 'index-hero', name: 'Hero' },
+  { id: 'index-problem', name: 'Problem' },
+  { id: 'index-platform', name: 'Platform' },
+  { id: 'index-stage-diagnosis', name: 'Stage Diagnosis' },
+  { id: 'index-ecosystem', name: 'Ecosystem' },
+  { id: 'index-results', name: 'Results' },
+  { id: 'index-founder', name: 'Founder' },
+];
 
 const Index = () => {
   const [isDiagnosticOpen, setIsDiagnosticOpen] = useState(false);
